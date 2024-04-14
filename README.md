@@ -1,2 +1,3 @@
 # vchy
-Pour collaborer comme en une certaine date
+Pour collaborer comme en une certaine date...
+SVP ne travaillez pas sur la branche main
