@@ -1,3 +1,3 @@
 # vchy
 Pour collaborer comme en une certaine date...
-SVP ne travaillez pas sur la branche main
+SVP ne faites pas vos commit sur la branche main
