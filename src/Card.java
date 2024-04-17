@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 public class Card {
-    char theSuit;
-    int cardNumber;
+    private char theSuit;
+    private int cardNumber;
 
     public Card() {
         this.theSuit = ' ';

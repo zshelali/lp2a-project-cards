@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.random.*;
 
 public class CardDeck {
-    public static ArrayList<Card> deck = new ArrayList<Card>();
+    private ArrayList<Card> deck = new ArrayList<Card>();
     private int MAX_SIZE = 4;
 
     
