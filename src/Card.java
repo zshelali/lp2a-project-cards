@@ -26,6 +26,10 @@ public class Card {
         return cardNumber;
     }
 
+    public int testMethod() {
+        return 0;
+    }
+
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
     }
