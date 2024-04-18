@@ -1,43 +1,33 @@
 import java.util.Objects;
 
 public class Card {
-    private char theSuit;
-    private int cardNumber;
+    private String cardSuit;
+    public String getCardSuit() {return cardSuit;}
+    public void setCardSuit(String cardSuit) {this.cardSuit = cardSuit;}
+
+    private String cardRank;
+    public String getCardRank() {return cardRank;}
+    public void setCardRank(String cardRank) {this.cardRank = cardRank;}
+
+    
 
     public Card() {
-        this.theSuit = ' ';
-        this.cardNumber = 0;
+        this.cardSuit = " ";
+        this.cardRank = " ";
     }
 
-    public Card(char c) {
-        this.theSuit = c;
-        this.cardNumber = 0;
-    }
-
-    public char getTheSuit() {
-        return theSuit;
-    }
-
-    public void setTheSuit(char theSuit) {
-        this.theSuit = theSuit;
-    }
-
-    public int getCardNumber() {
-        return cardNumber;
-    }
-
-
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
+    public Card(String c, String n) {
+        this.cardSuit = c;
+        this.cardRank = n;
     }
 
     @Override
     public String toString() {
         //Auto-generated
-        return "\nCard: [theSuit=" + theSuit + ", cardNumber=" + cardNumber + "]";
+        return "\nCard: [cardSuit=" + cardSuit + ", cardRank=" + cardRank + "]";
     }
 
-    public boolean equalsByNumber(Object obj) {
+    public boolean equalsByRank(Object obj) {
         //checking if they both point to the same memory location (optimisation)
         if (this == obj) {
             return true;
@@ -46,7 +36,7 @@ public class Card {
             return false;
         }
         Card otherCard = (Card) obj;
-        return Objects.equals(this.cardNumber, otherCard.cardNumber);
+        return Objects.equals(this.cardRank, otherCard.cardRank);
     }
 
     public boolean equalsBySuit(Object obj) {
@@ -57,9 +47,28 @@ public class Card {
             return false;
         }
         Card otherCard = (Card) obj;
-        return theSuit == otherCard.theSuit;
+        return cardSuit == otherCard.cardSuit;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Card other = (Card) obj;
+        return Objects.equals(this.cardSuit, other.cardSuit) &&
+               Objects.equals(this.cardRank, other.cardRank);
+    }
+
+    public int hashCode() {
+        return Objects.hash(cardSuit, cardRank);
+    }
+
+
 }
+
+
     
     
 

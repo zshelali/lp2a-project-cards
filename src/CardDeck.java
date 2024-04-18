@@ -1,14 +1,18 @@
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.random.*;
 
 public class CardDeck {
     private ArrayList<Card> deck = new ArrayList<Card>();
-    private int MAX_SIZE = 4;
+    private int maxSize;
 
     
     public CardDeck() {
         deck = new ArrayList<Card>();
+        maxSize = 4;
+    }
+
+    public CardDeck(int m) {
+        deck = new ArrayList<Card>();
+        maxSize = m;
     }
 
 
@@ -17,7 +21,7 @@ public class CardDeck {
     }
 
     public void addCard(Card c) {
-        if (deck.size() < MAX_SIZE) {
+        if (deck.size() < maxSize) {
             deck.add(c);
         }
         else {
@@ -33,6 +37,7 @@ public class CardDeck {
             deck.remove(c);
         }
     }
+    
 //to reprogram (inchallah)
 
     // public static Card selectAny() {
@@ -49,7 +54,7 @@ public class CardDeck {
         else {
             System.out.println("Deck :");
             for (int i=0; i<=deck.size()-1; i++) {
-                System.out.println("Card [" + deck.get(i).getTheSuit() + "," + deck.get(i).getCardNumber() + "]");
+                System.out.println("Card [" + deck.get(i).getCardSuit() + "," + deck.get(i).getCardRank() + "]");
     
             }
         }

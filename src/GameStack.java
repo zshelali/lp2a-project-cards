@@ -11,15 +11,15 @@ public class GameStack {
         return this.stack.isEmpty();
     }
 
-    public void pushCard(Card c) {
+    public void push(Card c) {
         this.stack.push(c);
     }
 
-    public void popCard() {
+    public void pop() {
         this.stack.pop();
     }
 
-    public Card peekCard() {
+    public Card peek() {
         return this.stack.peek();
     }
 
