@@ -1,21 +1,35 @@
-public class GameStack {
+import java.util.Stack;
 
-    private Card top = new Card();
+public class GameStack {
+    private Stack<Card> stack;
+
+    public GameStack() {
+        this.stack = new Stack<>();
+    }
    
     public boolean isEmpty() {
-        return top == null;
+        return this.stack.isEmpty();
     }
 
-    public void push(int x) {
-        
+    public void pushCard(Card c) {
+        this.stack.push(c);
     }
 
-    public void pop() {
-
+    public void popCard() {
+        this.stack.pop();
     }
 
+    public Card peekCard() {
+        return this.stack.peek();
+    }
 
-    
+    public int size() {
+        return stack.size();
+    }
 
+    @Override
+    public String toString() {
+        return stack.toString();
+    }
     
 }
