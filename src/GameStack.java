@@ -1,4 +1,4 @@
-public class GamePile {
+public class GameStack {
 
     private Card top = new Card();
    
