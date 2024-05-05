@@ -15,6 +15,14 @@ public class CardDeck {
         maxSize = m;
     }
 
+    public Card cardFetch(int index) {
+        return this.deck.get(index);
+    }
+
+    public int deckSize() {
+        return this.deck.size();
+    }
+
 
     public boolean isEmpty() {
         return (deck.isEmpty());
@@ -29,24 +37,24 @@ public class CardDeck {
         }
     }
 
-    public void removeCard(Card c) {
+    public void removeCard(int index) {
         if (deck.size() == 0) {
             System.out.println("Unable to remove card from deck : deck is already empty");
         }
         else  {
-            deck.remove(c);
+            deck.remove(index);
         }
     }
-    
-//to reprogram (inchallah)
 
-    // public static Card selectAny() {
-    //     Random rand = new Random();
-    //     int int_random = rand.nextInt(deck.size());
-    //     return deck.get(int_random);
-    // }
+    public void clearDeck() {
+        if (deck.size() == 0) {
+            System.out.println("Unable to empty the deck : deck is already empty");
+        }
+        else {
+            deck.clear();
+        }
+    }
 
-    
     public void printDeck() {
         if (deck.size() == 0) {
             System.out.println("Nothing to see here...");

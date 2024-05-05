@@ -8,13 +8,21 @@ import java.util.HashSet;
 
 public class GameController {
     private static GameStack gameStack = new GameStack();
+    public static GameStack getGameStack() { return gameStack; }
+
     private static Random random = new Random();
 
-    private static CardDeck gameDeck = new CardDeck(52);
+    private static CardDeck gameDeck = new CardDeck(); //default size = 4
+    public static CardDeck getGameDeck() { return gameDeck;}
+
+    private static int score = 0;
+    public static int getScore() {return score;}
+
+    private static CardDeck secondaryDeck = new CardDeck(52);
 
 
     public static void initGameStack() throws IOException {
-        
+        //Card values initialization 
         String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
         String[] ranks = {"Ace","2","3","4","5","6","7","8","9","10","Jack", "Queen", "King"};
 
@@ -28,11 +36,9 @@ public class GameController {
 
             if(!usedCards.contains(tempCard)) {
                 gameStack.push(tempCard);
+                //used cards management
                 usedCards.add(tempCard);
 
-            }
-            else {
-                //System.out.println("Duplicate card detected: " + tempCard);
             }
             
         }
@@ -43,34 +49,76 @@ public class GameController {
     }
 
     public static void initGameDeck() {
-        for(int i=0; i<4; i++) {
+        while (gameDeck.deckSize()<4 && !gameStack.isEmpty()) {
             gameDeck.addCard(gameStack.peek());
             gameStack.pop();
+            System.out.println("Card removed");
         }
         System.out.println("-------------------------------\n");
-        gameDeck.printDeck();
     }
 
 
     public static int gameCompare() {
-        if (gameDeck.cardFetch(0).equalsByRank(gameDeck.cardFetch(3))) {
-            gameDeck.clearDeck();
-            System.out.println("\n-------------------\nSame rank : you score 5 points !!!\n");
-            gameDeck.printDeck();
-            return 1;
-            //same Rank ==> 1
-        }
-        else if (gameDeck.cardFetch(0).equalsBySuit(gameDeck.cardFetch(3))) {
-            gameDeck.removeCard(1);
-            gameDeck.removeCard(1);
-            System.out.println("\n-------------------\nSame Suit : you score 2 points !\n");
-            gameDeck.printDeck();
-            return 2;
-            //same Suit ==> 2
+        if (gameDeck.deckSize() == 4) {
+            if (gameDeck.cardFetch(0).equalsByRank(gameDeck.cardFetch(3))) {
+                return 1;
+                //same Rank ==> 1
+            }
+            else if (gameDeck.cardFetch(0).equalsBySuit(gameDeck.cardFetch(3))) {
+                return 2;
+                //same Suit ==> 2
+            }
         }
 
-        else return 0;
+        return 0;
         //try again
+    }
+
+    public static void gameResume() {
+        if (!gameStack.isEmpty()) {
+            switch (gameCompare()) {
+                
+                case 0:
+                    secondaryDeck.addCard(gameDeck.cardFetch(0));
+                    gameDeck.removeCard(0);
+                    break;
+
+                case 1:
+                    gameDeck.clearDeck();
+                    // gameDeck.addCard(gameStack.peek());
+                    while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                        gameDeck.addCard(secondaryDeck.cardFetch(secondaryDeck.deckSize()-1));
+                        secondaryDeck.removeCard(secondaryDeck.deckSize()-1);
+                    }
+                    score+=5;
+                    break;
+
+                case 2:
+                    gameDeck.removeCard(1);
+                    gameDeck.removeCard(1);
+                    while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty() ) {
+                        gameDeck.addCard(secondaryDeck.cardFetch(secondaryDeck.deckSize()-1));
+                        secondaryDeck.removeCard(secondaryDeck.deckSize()-1);
+                    }
+                    score+=2;
+                    break;
+
+                default :
+                    System.out.println("gameResume : case error, value isn't 0, 1 or 2");
+
+                }
+
+        } 
+
+    }
+
+
+    //🥶
+    public static void printDeck() {
+        System.out.println("Primary deck : 🥇");
+        gameDeck.printDeck();
+        System.out.println("Secondary deck : 🥈");
+        secondaryDeck.printDeck();
     }
 
 

@@ -28,7 +28,7 @@ public class Card {
     }
 
     public boolean equalsByRank(Object obj) {
-        //checking if they both point to the same memory location (optimisation)
+        //checking if they both point to the same memory location (optimization)
         if (this == obj) {
             return true;
         }
