@@ -1,1 +1,2 @@
-/usr/bin/env /Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/bin/java -XX:+ShowCodeDetailsInExceptionMessages -cp /Users/zshelali/Library/Application\ Support/Code/User/workspaceStorage/d78aa5cfa324ca0b5c6a4aead8e3ca88/redhat.java/jdt_ws/vichy_1a89b781/bin Main
+/usr/bin/env
+/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/bin/java -XX:+ShowCodeDetailsInExceptionMessages -cp /Users/zshelali/Library/Application\ Support/Code/User/workspaceStorage/08a11d3697dce77ba6612d6a6974eba0/redhat.java/jdt_ws/lp2a-project-cards_b0fc13f5/bin Main 
