@@ -20,7 +20,7 @@ public class Main {
             GameController.initGameDeck();
             GameController.gameCompare();
             GameController.gameResume();
-            System.out.println("gameStack size : "+ GameController.getGameStack().size());
+            //System.out.println("gameStack size : "+ GameController.getGameStack().size());
             System.out.println("\n Current score : " +GameController.getScore());
             GameController.printDeck();
 

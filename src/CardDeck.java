@@ -65,7 +65,7 @@ public class CardDeck {
 
     public void printDeck() {
         if (deck.size() == 0) {
-            System.out.println("Nothing to see here...");
+            System.out.println("Empty deck");
         }
         else {
             System.out.println("Deck :");
