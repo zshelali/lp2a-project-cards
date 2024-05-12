@@ -1,5 +1,5 @@
-package demoswing;
-
+//package demoswing;
+//was ist das ?
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class TestWindow extends JFrame implements ActionListener {
+public class TestWindows extends JFrame implements ActionListener {
 
 	//JFrame class wants its subclasses to have a "unique ID",
 	//and code interfaces force us to do so to avoid a warning
@@ -30,7 +30,7 @@ public class TestWindow extends JFrame implements ActionListener {
 	/**
 	 * Constructor
 	 */
-	public TestWindow() {
+	public TestWindows() {
 		
 		//Part written manually (window size, window title, prevent resize, rtc...)
 		this.setSize(800,500);
@@ -52,7 +52,7 @@ public class TestWindow extends JFrame implements ActionListener {
 
 		for(String card : Deck){
 			JLabel cardBuffer = new JLabel(""); // Création d'une nouvelle instance de JLabel à chaque itération
-			cardBuffer.setIcon(new ImageIcon(TestWindow.class.getResource("/resources/"+ card +".png")));
+			cardBuffer.setIcon(new ImageIcon(TestWindows.class.getResource("/resources/"+ card +".png")));
 			cardBuffer.setBounds(ImagesList.size() * 10, 62, 200, 328);
 			System.out.println("Yo");
 			ImagesList.add(cardBuffer);
@@ -60,7 +60,7 @@ public class TestWindow extends JFrame implements ActionListener {
 		}
 			
 		cardDisplay = new JLabel("");
-		cardDisplay.setIcon(new ImageIcon(TestWindow.class.getResource("/resources/KS.png")));
+		cardDisplay.setIcon(new ImageIcon(TestWindows.class.getResource("/resources/KS.png")));
 		cardDisplay.setBounds(138, 62, 200, 328);
 		getContentPane().add(cardDisplay);
 		
@@ -86,7 +86,7 @@ public class TestWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		//All buttons call the same finction, so we have to test
+		//All buttons call the same function, so we have to test
 		//for the source of the event, and react accordingly.
 		
 		//Here, "reaction" is to change the path of the image we'll load afterwards
@@ -97,6 +97,6 @@ public class TestWindow extends JFrame implements ActionListener {
 		}
 		
 		//This line will change the image by fetching in "resources" package
-		this.cardDisplay.setIcon(new ImageIcon(TestWindow.class.getResource(imagePath)));
+		this.cardDisplay.setIcon(new ImageIcon(TestWindows.class.getResource(imagePath)));
 	}
 }

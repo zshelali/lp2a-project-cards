@@ -37,12 +37,14 @@ public class CardDeck {
         }
     }
 
-    public void removeCard(int index) {
+    public Card removeCard(int index) {
         if (deck.size() == 0) {
             System.out.println("Unable to remove card from deck : deck is already empty");
+            return null;
         }
         else  {
-            deck.remove(index);
+            
+            return deck.remove(index);
         }
     }
 
@@ -55,14 +57,19 @@ public class CardDeck {
         }
     }
 
+    public void shiftCards() {
+        for (int i = 0; i < this.deckSize(); i++) {
+
+        }
+    }
+
     public void printDeck() {
         if (deck.size() == 0) {
-            System.out.println("Nothing to see here...");
+            System.out.println("Empty deck");
         }
         else {
-            System.out.println("Deck :");
             for (int i=0; i<=deck.size()-1; i++) {
-                System.out.println("Card [" + deck.get(i).getCardSuit() + "," + deck.get(i).getCardRank() + "]");
+                System.out.println(i+" Card [" + deck.get(i).getCardSuit() + "," + deck.get(i).getCardRank() + "]");
     
             }
         }
