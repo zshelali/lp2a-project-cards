@@ -68,9 +68,8 @@ public class CardDeck {
             System.out.println("Empty deck");
         }
         else {
-            System.out.println("Deck :");
             for (int i=0; i<=deck.size()-1; i++) {
-                System.out.println("Card [" + deck.get(i).getCardSuit() + "," + deck.get(i).getCardRank() + "]");
+                System.out.println(i+" Card [" + deck.get(i).getCardSuit() + "," + deck.get(i).getCardRank() + "]");
     
             }
         }

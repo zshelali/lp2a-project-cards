@@ -51,9 +51,9 @@ public class GameController {
     public static void initGameDeck() {
         while (gameDeck.deckSize()<4 && !gameStack.isEmpty()) {
             gameDeck.addCard(gameStack.pop());
-            System.out.println("Card removed");
+            //System.out.println("Card removed");
         }
-        System.out.println("-------------------------------\n");
+        //System.out.println("-------------------------------\n");
     }
 
 
@@ -93,8 +93,14 @@ public class GameController {
                         while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
                             gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
                             
-             		 }
+             		    }
                	    }
+                    else {
+                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                            gameDeck.addCard(gameStack.pop());
+                            System.out.println("Entered case ! : while loop else 🚨🚨🚨🚨🚨🚨");
+                        }
+                    }
                     score+=5;
                     break;
 
@@ -122,7 +128,7 @@ public class GameController {
     public static void printDeck() {
         System.out.println("Primary deck : 🥇");
         gameDeck.printDeck();
-        System.out.println("Secondary deck : 🥈");
+        //System.out.println("Secondary deck : 🥈");
         secondaryDeck.printDeck();
     }
 
