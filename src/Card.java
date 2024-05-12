@@ -44,7 +44,7 @@ public class Card {
             return true;
         }
         if (obj == null || getClass() != obj.getClass()) {
-            return false;
+            return false; 
         }
         Card otherCard = (Card) obj;
         return cardSuit == otherCard.cardSuit;

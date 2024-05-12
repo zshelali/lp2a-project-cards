@@ -22,7 +22,7 @@ public class GameController {
 
 
     public static void initGameStack() throws IOException {
-        //Card values initialization 
+        //Card values initialisation 
         String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
         String[] ranks = {"Ace","2","3","4","5","6","7","8","9","10","Jack", "Queen", "King"};
 
@@ -50,11 +50,10 @@ public class GameController {
 
     public static void initGameDeck() {
         while (gameDeck.deckSize()<4 && !gameStack.isEmpty()) {
-            gameDeck.addCard(gameStack.peek());
-            gameStack.pop();
-            System.out.println("Card removed");
+            gameDeck.addCard(gameStack.pop());
+            //System.out.println("Card removed");
         }
-        System.out.println("-------------------------------\n");
+        //System.out.println("-------------------------------\n");
     }
 
 
@@ -78,28 +77,42 @@ public class GameController {
         if (!gameStack.isEmpty()) {
             switch (gameCompare()) {
                 
-                case 0:
-                    secondaryDeck.addCard(gameDeck.cardFetch(0));
-                    gameDeck.removeCard(0);
+                case 0: //nothing equal, draw a card
+                    secondaryDeck.addCard(gameDeck.removeCard(0));
+                    gameDeck.addCard(gameStack.pop());
                     break;
 
-                case 1:
-                    gameDeck.clearDeck();
-                    // gameDeck.addCard(gameStack.peek());
-                    while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
-                        gameDeck.addCard(secondaryDeck.cardFetch(secondaryDeck.deckSize()-1));
-                        secondaryDeck.removeCard(secondaryDeck.deckSize()-1);
+                case 1: //equal by Rank, score +=5, remove all cards
+                    gameDeck.clearDeck(); 
+                    //refill the gameDeck
+                    if (!secondaryDeck.isEmpty()) {
+                        while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                            gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+             		    }
+               	    }
+                    else {
+                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                            gameDeck.addCard(gameStack.pop());
+                            System.out.println("CASE 1 :🚨🚨🚨🚨🚨🚨🚨");
+                        }
                     }
                     score+=5;
                     break;
 
-                case 2:
+                case 2:  //equal by Suit, score +=2
                     gameDeck.removeCard(1);
                     gameDeck.removeCard(1);
-                    while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty() ) {
-                        gameDeck.addCard(secondaryDeck.cardFetch(secondaryDeck.deckSize()-1));
-                        secondaryDeck.removeCard(secondaryDeck.deckSize()-1);
-                    }
+                    if (!secondaryDeck.isEmpty()) {
+                        while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                            gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+             		    }
+               	    }
+                    else {
+                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                            gameDeck.addCard(gameStack.pop());
+                            System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
+                        }
+                    } 
                     score+=2;
                     break;
 
@@ -117,7 +130,7 @@ public class GameController {
     public static void printDeck() {
         System.out.println("Primary deck : 🥇");
         gameDeck.printDeck();
-        System.out.println("Secondary deck : 🥈");
+        //System.out.println("Secondary deck : 🥈");
         secondaryDeck.printDeck();
     }
 
