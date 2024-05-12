@@ -77,28 +77,23 @@ public class GameController {
         if (!gameStack.isEmpty()) {
             switch (gameCompare()) {
                 
-                case 0: //nothing equal, draw
+                case 0: //nothing equal, draw a card
                     secondaryDeck.addCard(gameDeck.removeCard(0));
                     gameDeck.addCard(gameStack.pop());
-                    //reviewed, should work
                     break;
 
                 case 1: //equal by Rank, score +=5, remove all cards
                     gameDeck.clearDeck(); 
-                    // gameDeck.addCard(gameStack.peek());
-
-                    //refills the gameDeck
+                    //refill the gameDeck
                     if (!secondaryDeck.isEmpty()) {
-
                         while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
                             gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
-                            
              		    }
                	    }
                     else {
                         while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
                             gameDeck.addCard(gameStack.pop());
-                            System.out.println("Entered case ! : while loop else 🚨🚨🚨🚨🚨🚨");
+                            System.out.println("CASE 1 :🚨🚨🚨🚨🚨🚨🚨");
                         }
                     }
                     score+=5;
@@ -107,10 +102,17 @@ public class GameController {
                 case 2:  //equal by Suit, score +=2
                     gameDeck.removeCard(1);
                     gameDeck.removeCard(1);
-                    while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty() ) {
-                        gameDeck.addCard(secondaryDeck.cardFetch(secondaryDeck.deckSize()-1));
-                        secondaryDeck.removeCard(secondaryDeck.deckSize()-1);
-                    }
+                    if (!secondaryDeck.isEmpty()) {
+                        while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                            gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+             		    }
+               	    }
+                    else {
+                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                            gameDeck.addCard(gameStack.pop());
+                            System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
+                        }
+                    } 
                     score+=2;
                     break;
 
