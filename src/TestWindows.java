@@ -56,27 +56,27 @@ public class TestWindow extends JFrame implements ActionListener {
 		getContentPane().add(button2);
 		
 		cardOne = new JLabel("");
-		cardOne.setIcon(new ImageIcon(TestWindow.class.getResource("../Cards/"+ nameCardFetch(1)+".png")));
+		cardOne.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
 		cardOne.setBounds(310, 200, 200, 328);
 		getContentPane().add(cardOne);
 
 		cardTwo = new JLabel("");
-		cardTwo.setIcon(new ImageIcon(TestWindow.class.getResource("../Cards/"+ nameCardFetch(2)+".png")));
+		cardTwo.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
 		cardTwo.setBounds(520, 200, 200, 328);
 		getContentPane().add(cardTwo);
 
 		cardThree = new JLabel("");
-		cardThree.setIcon(new ImageIcon(TestWindow.class.getResource("../Cards/"+ nameCardFetch(3)+".png")));
+		cardThree.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
 		cardThree.setBounds(730, 200, 200, 328);
 		getContentPane().add(cardThree);
 
 		cardFour = new JLabel("");
-		cardFour.setIcon(new ImageIcon(TestWindow.class.getResource("../Cards/"+ nameCardFetch(4)+".png")));
+		cardFour.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(4)+".png")));
 		cardFour.setBounds(940, 200, 200, 328);
 		getContentPane().add(cardFour);
 
 		deckTemp = new JLabel("");
-		deckTemp.setIcon(new ImageIcon(TestWindow.class.getResource("../Cards/00.png")));
+		deckTemp.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/00.png")));
 		deckTemp.setBounds(50, 200, 200, 328);
 		getContentPane().add(deckTemp);
 		
@@ -95,8 +95,8 @@ public class TestWindow extends JFrame implements ActionListener {
 			button1.setBounds(310, 200, 200, 328);
 			button2.setBounds(940, 200, 200, 328);
 		}
-	}
-
+	
+		/*
 
 		if(e.getSource() == button1 || e.getSource() == button2) { // case 1
 			//imagePath = "/resources/KS.png";
@@ -124,8 +124,8 @@ public class TestWindow extends JFrame implements ActionListener {
         GameController.printDeck();
 		button1.setVisible(false);
 		button2.setVisible(false);
+	*/
 	}
-
 	public String nameCardFetch(int index){
 		Card card;
 		String name;
@@ -163,6 +163,7 @@ public class TestWindow extends JFrame implements ActionListener {
 				name = name + "H";
 				break;
 		}
+		System.out.println("name : ");
 		return name;
 
 	}
