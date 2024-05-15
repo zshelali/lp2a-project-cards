@@ -123,19 +123,19 @@ public class GameController {
 
     public static void suitEqual(){
         gameDeck.removeCard(1);
-                    gameDeck.removeCard(1);
-                    if (!secondaryDeck.isEmpty()) {
-                        while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
-                            gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
-             		    }
-               	    }
-                    if (secondaryDeck.isEmpty()) {
-                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
-                            gameDeck.addCard(gameStack.pop());
-                            System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
-                        }
-                    }
-                    score+=2;
+        gameDeck.removeCard(1);
+        if (!secondaryDeck.isEmpty()) {
+            while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+            }
+        }
+        if (secondaryDeck.isEmpty()) {
+            while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                gameDeck.addCard(gameStack.pop());
+                    System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
+            }
+        }
+        score+=2;
     }
 
     //🥶
