@@ -111,7 +111,8 @@ public class GameController {
                 gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
             }
         }
-        else {
+
+        if (secondaryDeck.isEmpty()) {
             while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
                 gameDeck.addCard(gameStack.pop());
                 System.out.println("CASE 1 :🚨🚨🚨🚨🚨🚨🚨");
@@ -128,7 +129,7 @@ public class GameController {
                             gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
              		    }
                	    }
-                    else {
+                    if (secondaryDeck.isEmpty()) {
                         while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
                             gameDeck.addCard(gameStack.pop());
                             System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
