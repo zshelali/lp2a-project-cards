@@ -15,8 +15,7 @@ public class TestWindow extends JFrame implements ActionListener {
 	//private static final String[] Deck = {"2C","3C","4C","5C","6C","7C","8C","9C","10C","AC","JC","QC","KC","2S","3S","4S","5S","6S","7S","8S","9S","10S","AS","JS","QS","KS","2D","3D","4D","5D","6D","7D","8D","9D","10D","AD","JD","QD","KD","2H","3H","4H","5H","6H","7H","8H","9H","10H","AH","JH","QH","KH"};
 
 	
-	protected JButton button1;
-	protected JButton button2;
+
 	protected JButton buttonPioche;
 
 	protected JLabel cardOne;
@@ -43,35 +42,24 @@ public class TestWindow extends JFrame implements ActionListener {
 		buttonPioche.setBounds(503, 22, 223, 85);
 		getContentPane().add(buttonPioche);
 
-
-		button1 = new JButton("Button1");
-		button1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		button1.setBounds(503, 22, 223, 85);
-		getContentPane().add(button1);
-
-		button2 = new JButton("Button2");
-		//button.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/2S.png")));
-		button2.setFont(new Font("Tahoma", Font.BOLD, 16));
-		button2.setBounds(503, 22, 223, 85);
-		getContentPane().add(button2);
 		
 		cardOne = new JLabel("");
-		cardOne.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
+		cardOne.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(0)+".png")));
 		cardOne.setBounds(310, 200, 200, 328);
 		getContentPane().add(cardOne);
 
 		cardTwo = new JLabel("");
-		cardTwo.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
+		cardTwo.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
 		cardTwo.setBounds(520, 200, 200, 328);
 		getContentPane().add(cardTwo);
 
 		cardThree = new JLabel("");
-		cardThree.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
+		cardThree.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
 		cardThree.setBounds(730, 200, 200, 328);
 		getContentPane().add(cardThree);
 
 		cardFour = new JLabel("");
-		cardFour.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(4)+".png")));
+		cardFour.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
 		cardFour.setBounds(940, 200, 200, 328);
 		getContentPane().add(cardFour);
 
@@ -80,9 +68,6 @@ public class TestWindow extends JFrame implements ActionListener {
 		deckTemp.setBounds(50, 200, 200, 328);
 		getContentPane().add(deckTemp);
 		
-		
-		button1.addActionListener(this);
-		button2.addActionListener(this);
 		buttonPioche.addActionListener(this);
 
 		this.setVisible(true);
@@ -90,12 +75,17 @@ public class TestWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		GameController.initGameDeck();
-		if(GameController.gameCompare() == 1 || GameController.gameCompare() == 2){
-			button1.setBounds(310, 200, 200, 328);
-			button2.setBounds(940, 200, 200, 328);
+		System.out.println("///////////////////////////////////////");
+		if(e.getSource() == buttonPioche){
+			GameController.initGameDeck();
+			GameController.gameResume();
+			System.out.println("\n Current score : " +GameController.getScore());
+      		GameController.printDeck();
 		}
-	
+		this.cardOne.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(0)+".png")));
+		this.cardTwo.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
+		this.cardThree.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
+		this.cardFour.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
 		/*
 
 		if(e.getSource() == button1 || e.getSource() == button2) { // case 1
@@ -129,7 +119,7 @@ public class TestWindow extends JFrame implements ActionListener {
 	public String nameCardFetch(int index){
 		Card card;
 		String name;
-
+		
 		card = GameController.getGameDeck().cardFetch(index);
 		switch (card.getCardRank()) {
 			case "King":
@@ -163,7 +153,6 @@ public class TestWindow extends JFrame implements ActionListener {
 				name = name + "H";
 				break;
 		}
-		System.out.println("name : ");
 		return name;
 
 	}
