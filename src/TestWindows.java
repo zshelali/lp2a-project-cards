@@ -17,6 +17,8 @@ public class TestWindow extends JFrame implements ActionListener {
 	
 
 	protected JButton buttonPioche;
+	protected JButton buttonRank;
+	protected JButton buttonSuit;
 
 	protected JLabel cardOne;
 	protected JLabel cardTwo;
@@ -37,10 +39,26 @@ public class TestWindow extends JFrame implements ActionListener {
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
+
 		buttonPioche = new JButton("Pioche");
+		buttonPioche.setContentAreaFilled(false);
 		buttonPioche.setFont(new Font("Tahoma", Font.BOLD, 16));
 		buttonPioche.setBounds(503, 22, 223, 85);
 		getContentPane().add(buttonPioche);
+
+		buttonSuit = new JButton("");
+		buttonSuit.setContentAreaFilled(false);
+		buttonSuit.setBorderPainted(false);
+		buttonSuit.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/SuitButton.png")));
+		buttonSuit.setBounds(310, 213, 830, 305);
+		getContentPane().add(buttonSuit);
+
+		buttonRank = new JButton("");
+		buttonRank.setContentAreaFilled(false);
+		buttonRank.setBorderPainted(false);
+		buttonRank.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/RankButton.png")));
+		buttonRank.setBounds(310, 213, 830, 305);
+		getContentPane().add(buttonRank);
 
 		
 		cardOne = new JLabel("");
@@ -63,14 +81,19 @@ public class TestWindow extends JFrame implements ActionListener {
 		cardFour.setBounds(940, 200, 200, 328);
 		getContentPane().add(cardFour);
 
+
 		deckTemp = new JLabel("");
 		deckTemp.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/00.png")));
 		deckTemp.setBounds(50, 200, 200, 328);
 		getContentPane().add(deckTemp);
 		
 		buttonPioche.addActionListener(this);
+		buttonSuit.addActionListener(this);
+		buttonRank.addActionListener(this);
 
 		this.setVisible(true);
+		buttonSuit.setVisible(false);
+		buttonRank.setVisible(false);
 	}
 
 	@Override
@@ -82,6 +105,7 @@ public class TestWindow extends JFrame implements ActionListener {
 			System.out.println("\n Current score : " +GameController.getScore());
       		GameController.printDeck();
 		}
+		//desk updating
 		this.cardOne.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(0)+".png")));
 		this.cardTwo.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
 		this.cardThree.setIcon(new ImageIcon(TestWindow.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
