@@ -20,6 +20,8 @@ public class GUI extends JFrame implements ActionListener {
 	protected JButton buttonRank;
 	protected JButton buttonSuit;
 
+	protected JButton buttonScore;
+
 	protected JLabel cardOne;
 	protected JLabel cardTwo;
 	protected JLabel cardThree;
@@ -35,7 +37,7 @@ public class GUI extends JFrame implements ActionListener {
 		//Part written manually (window size, window title, prevent resize, rtc...)
 		this.setSize(1200,600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Swing Test Window");
+		this.setTitle("One Handed Soliraire");
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -47,6 +49,11 @@ public class GUI extends JFrame implements ActionListener {
 		buttonPioche.setFont(new Font("Tahoma", Font.BOLD, 16));
 		buttonPioche.setBounds(503, 22, 223, 85);
 		getContentPane().add(buttonPioche);
+
+		buttonScore = new JButton("0");
+		buttonScore.setFont(new Font("Tahoma", Font.BOLD, 16));
+		buttonScore.setBounds(900, 22, 50, 30);
+		getContentPane().add(buttonScore);
 
 		buttonSuit = new JButton("");
 		buttonSuit.setContentAreaFilled(false);
@@ -103,7 +110,7 @@ public class GUI extends JFrame implements ActionListener {
 		this.setVisible(true);
 		
 		//now the game start
-		choiseVisibleButton(buttonRank, buttonSuit, deckTemp);
+		choiseVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
 	}
 
 	@Override
@@ -127,13 +134,14 @@ public class GUI extends JFrame implements ActionListener {
 
 		System.out.println("\n Current score : " +GameController.getScore());
     	GameController.printDeck();
-		choiseVisibleButton(buttonRank, buttonSuit, deckTemp);
+		choiseVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
 
 		//desk updating
 		this.cardOne.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(0)+".png")));
 		this.cardTwo.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
 		this.cardThree.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
 		this.cardFour.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
+		buttonScore.setText("" + GameController.getScore());
 		/*
 
 		if(e.getSource() == button1 || e.getSource() == button2) { // case 1
@@ -206,7 +214,7 @@ public class GUI extends JFrame implements ActionListener {
 
 	}
 
-	public static void choiseVisibleButton(JButton buttonRank, JButton buttonSuit, JLabel deckTemp){
+	public static void choiseVisibleButton(JButton buttonRank, JButton buttonSuit, JLabel deckTemp, JLabel draw){
 		//show or hide the transparent button on the cards
 		if(GameController.gameCompare() == 1){
 			buttonSuit.setVisible(false);
@@ -228,5 +236,11 @@ public class GUI extends JFrame implements ActionListener {
 			deckTemp.setVisible(true);
 		}
 
+		if(GameController.getGameStack().size() == 0){
+			draw.setVisible(false);
+		}
+		else{
+			draw.setVisible(true);
+		}
 	}
 }
