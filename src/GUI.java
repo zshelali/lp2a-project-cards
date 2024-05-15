@@ -37,7 +37,7 @@ public class GUI extends JFrame implements ActionListener {
 		//Part written manually (window size, window title, prevent resize, rtc...)
 		this.setSize(1200,600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("One Handed Soliraire");
+		this.setTitle("One Handed Solitaire");
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -45,7 +45,7 @@ public class GUI extends JFrame implements ActionListener {
 		Color green = new Color(0,150,0);
 		this.getContentPane().setBackground(green);
 
-		buttonPioche = new JButton("Pioche");
+		buttonPioche = new JButton("Draw");
 		buttonPioche.setFont(new Font("Tahoma", Font.BOLD, 16));
 		buttonPioche.setBounds(503, 22, 223, 85);
 		getContentPane().add(buttonPioche);
@@ -211,7 +211,6 @@ public class GUI extends JFrame implements ActionListener {
 				break;
 		}
 		return name;
-
 	}
 
 	public static void choiseVisibleButton(JButton buttonRank, JButton buttonSuit, JLabel deckTemp, JLabel draw){
