@@ -19,7 +19,7 @@ public class GameController {
     public static int getScore() {return score;}
 
     private static CardDeck secondaryDeck = new CardDeck(52);
-
+    public static CardDeck getSecondaryDeck() {return secondaryDeck;}
 
     public static void initGameStack() throws IOException {
         //Card values initialisation 
