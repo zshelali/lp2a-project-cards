@@ -78,42 +78,15 @@ public class GameController {
             switch (gameCompare()) {
                 
                 case 0: //nothing equal, draw a card
-                    secondaryDeck.addCard(gameDeck.removeCard(0));
-                    gameDeck.addCard(gameStack.pop());
+                    drawCard();
                     break;
 
                 case 1: //equal by Rank, score +=5, remove all cards
-                    gameDeck.clearDeck(); 
-                    //refill the gameDeck
-                    if (!secondaryDeck.isEmpty()) {
-                        while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
-                            gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
-             		    }
-               	    }
-                    else {
-                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
-                            gameDeck.addCard(gameStack.pop());
-                            System.out.println("CASE 1 :🚨🚨🚨🚨🚨🚨🚨");
-                        }
-                    }
-                    score+=5;
+                    rankEqual();
                     break;
 
                 case 2:  //equal by Suit, score +=2
-                    gameDeck.removeCard(1);
-                    gameDeck.removeCard(1);
-                    if (!secondaryDeck.isEmpty()) {
-                        while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
-                            gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
-             		    }
-               	    }
-                    else {
-                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
-                            gameDeck.addCard(gameStack.pop());
-                            System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
-                        }
-                    } 
-                    score+=2;
+                    suitEqual();
                     break;
 
                 default :
@@ -125,12 +98,50 @@ public class GameController {
 
     }
 
+    public static void drawCard(){
+        secondaryDeck.addCard(gameDeck.removeCard(0));
+        gameDeck.addCard(gameStack.pop());
+    }
+
+    public static void rankEqual(){
+        gameDeck.clearDeck();
+        //refill the gameDeck
+        if (!secondaryDeck.isEmpty()) {
+            while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+            }
+        }
+        else {
+            while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                gameDeck.addCard(gameStack.pop());
+                System.out.println("CASE 1 :🚨🚨🚨🚨🚨🚨🚨");
+            }
+        }
+        score+=5;
+    }
+
+    public static void suitEqual(){
+        gameDeck.removeCard(1);
+                    gameDeck.removeCard(1);
+                    if (!secondaryDeck.isEmpty()) {
+                        while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                            gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+             		    }
+               	    }
+                    else {
+                        while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                            gameDeck.addCard(gameStack.pop());
+                            System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
+                        }
+                    }
+                    score+=2;
+    }
 
     //🥶
     public static void printDeck() {
         System.out.println("Primary deck : 🥇");
         gameDeck.printDeck();
-        //System.out.println("Secondary deck : 🥈");
+        System.out.println("Secondary deck : 🥈");
         secondaryDeck.printDeck();
     }
 
