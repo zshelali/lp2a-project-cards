@@ -1,39 +1,36 @@
 public class Main {
-    public static void main(String[] args) throws Exception {
-      System.out.println("gameStack size : "+ GameController.getGameStack().size());
+  public static void main(String[] args) throws Exception {
+    System.out.println("gameStack size : "+ GameController.getGameStack().size());
 
-        GameController.initGameStack();
-        System.out.println("gameStack size : "+ GameController.getGameStack().size());
-        GameController.initGameDeck();
-        GameController.printDeck();
+    GameController.initGameStack();
+    System.out.println("gameStack size : "+ GameController.getGameStack().size());
+    GameController.initGameDeck();
+    GameController.printDeck();
 
-        GameController.gameCompare();
-        GameController.gameResume();
-
-
-        //debug sheiße
-        System.out.println("gameStack size : "+ GameController.getGameStack().size());
-        System.out.println("\n Current score : " +GameController.getScore());
-        GameController.printDeck();
+    GameController.gameCompare();
+    GameController.gameResume();
 
 
+    //debug sheiße
+    System.out.println("gameStack size : "+ GameController.getGameStack().size());
+    System.out.println("\n Current score : " +GameController.getScore());
+    GameController.printDeck();
 
-        // GameController.initGameDeck();
-        //     GameController.gameResume();
-             
+    new TestWindow();
 
-          while(GameController.getGameStack().size()>0) {
+
+    // GameController.initGameDeck();
+    //     GameController.gameResume();
+    
+/* 
+    while(GameController.getGameStack().size()>0) {
 //            System.out.println("Entering the while loop :\n");
-            GameController.initGameDeck();
-            GameController.gameCompare();
-            GameController.gameResume();
-            //System.out.println("gameStack size : "+ GameController.getGameStack().size());
-            System.out.println("\n Current score : " +GameController.getScore());
-            GameController.printDeck();
-
-          }
-
-        
-    }
+      GameController.initGameDeck();
+      GameController.gameResume();
+      //System.out.println("gameStack size : "+ GameController.getGameStack().size());
+      System.out.println("\n Current score : " +GameController.getScore());
+      GameController.printDeck();
+    }*/
+  }
 }
 
