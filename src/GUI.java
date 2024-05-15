@@ -46,8 +46,10 @@ public class GUI extends JFrame implements ActionListener {
 		this.getContentPane().setBackground(green);
 
 		buttonPioche = new JButton("Draw");
-		buttonPioche.setFont(new Font("Tahoma", Font.BOLD, 16));
-		buttonPioche.setBounds(503, 22, 223, 85);
+		buttonPioche.setContentAreaFilled(false);
+		buttonPioche.setBorderPainted(false);
+		buttonPioche.setFont(new Font("Tahoma", Font.BOLD, 50));
+		buttonPioche.setBounds(50, 10, 328, 200);
 		getContentPane().add(buttonPioche);
 
 		buttonScore = new JButton("0");
