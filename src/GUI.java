@@ -145,6 +145,8 @@ public class GUI extends JFrame implements ActionListener {
 			buttonPioche.setVisible(false);
 			buttonRank.setVisible(false);
 			buttonSuit.setVisible(false);
+			textScore.setBounds(300, 200, 400, 100);
+			textScore.setText(" Game Over       Your score is" + GameController.getScore() + "points");
 		}
 		else{
 		//desk updating
