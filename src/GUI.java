@@ -184,7 +184,7 @@ public class GUI extends JFrame implements ActionListener {
 			System.out.println("Equal by suit");
 			GameController.suitEqual();
 		}
-		else if(e.getSource() == buttonJoker && !(GameController.gameCompare() == 0) && !(GameController.getGameStack().size() == 0)){
+		else if(e.getSource() == buttonJoker && !(GameController.getGameStack().size() == 0)){
 			System.out.println("Joker used");
 			GameController.jokerPressed();
 		}
