@@ -21,6 +21,10 @@ public class GameController {
     private static CardDeck secondaryDeck = new CardDeck(52);
     public static CardDeck getSecondaryDeck() {return secondaryDeck;}
 
+    private static int jokerUsage = 2;
+    public static int getJokerUsage() {return jokerUsage;}
+
+
     public static void initGameStack() throws IOException {
         //Card values initialisation 
         String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
@@ -137,6 +141,23 @@ public class GameController {
             }
         }
         score+=2;
+    }
+
+    public static void jokerPressed() {
+        gameDeck.removeCard(1);
+        gameDeck.removeCard(1);
+        if (!secondaryDeck.isEmpty()) {
+            while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                gameDeck.addCard(0,secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+            }
+        }
+        if (secondaryDeck.isEmpty()) {
+            while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                gameDeck.addCard(gameStack.pop());
+                    System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
+            }
+        }
+     
     }
 
     //🥶
