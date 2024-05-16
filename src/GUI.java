@@ -2,16 +2,16 @@
 
 //import java.awt.Color;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 //import javax.print.attribute.standard.JobKOctetsSupported;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
+//import javax.swing.JTextField;
 
 public class GUI extends JFrame implements ActionListener {
 
@@ -21,8 +21,10 @@ public class GUI extends JFrame implements ActionListener {
 	protected JButton buttonPioche;
 	protected JButton buttonRank;
 	protected JButton buttonSuit;
+	protected static JButton buttonJoker;
 
-	protected JTextField textScore;
+	protected JLabel textScore;
+	protected JLabel jokerCounter;
 
 	protected JLabel cardOne;
 	protected JLabel cardTwo;
@@ -30,6 +32,8 @@ public class GUI extends JFrame implements ActionListener {
 	protected JLabel cardFour;
 	protected JLabel deckTemp;
 	protected JLabel draw;
+
+	
 	
 	/**
 	 * Constructor
@@ -52,19 +56,76 @@ public class GUI extends JFrame implements ActionListener {
 		buttonPioche.setBorderPainted(false);
 		buttonPioche.setFont(new Font("Tahoma", Font.BOLD, 50));
 		buttonPioche.setBounds(50, 10, 328, 200);
+		buttonPioche.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonPioche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonPioche.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });
 		getContentPane().add(buttonPioche);
 
-		textScore = new JTextField("0");
+		buttonJoker = new JButton("🃏");
+		buttonJoker.setContentAreaFilled(false);
+		buttonJoker.setBorderPainted(false);
+		buttonJoker.setFont(new Font("Tahoma", Font.BOLD, 50));
+		buttonJoker.setBounds(1000, 50, 85,50);
+		buttonJoker.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonJoker.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonJoker.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });	
+		getContentPane().add(buttonJoker);
 		
+
+		textScore = new JLabel("Score : " + GameController.getScore());
 		textScore.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textScore.setBounds(900, 22, 70, 40);
+		textScore.setBounds(900, 22, 100, 40);
 		getContentPane().add(textScore);
+
+		jokerCounter = new JLabel("Remaining Jokers : " + GameController.getJokerUsage());
+		jokerCounter.setFont(new Font("Tahoma", Font.BOLD, 16));
+		jokerCounter.setBounds(1000, 10, 200, 40);
+		getContentPane().add(jokerCounter);
 
 		buttonSuit = new JButton("");
 		buttonSuit.setContentAreaFilled(false);
 		buttonSuit.setBorderPainted(false);
 		buttonSuit.setIcon(new ImageIcon(GUI.class.getResource("/Cards/SuitButton.png")));
 		buttonSuit.setBounds(310, 213, 830, 305);
+		buttonSuit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonSuit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonSuit.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });	
 		getContentPane().add(buttonSuit);
 
 		buttonRank = new JButton("");
@@ -72,6 +133,21 @@ public class GUI extends JFrame implements ActionListener {
 		buttonRank.setBorderPainted(false);
 		buttonRank.setIcon(new ImageIcon(GUI.class.getResource("/Cards/RankButton.png")));
 		buttonRank.setBounds(310, 213, 830, 305);
+		buttonRank.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonRank.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonRank.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });	
 		getContentPane().add(buttonRank);
 
 		
@@ -111,11 +187,13 @@ public class GUI extends JFrame implements ActionListener {
 		buttonPioche.addActionListener(this);
 		buttonSuit.addActionListener(this);
 		buttonRank.addActionListener(this);
+		buttonJoker.addActionListener(this);
+		
 
 		this.setVisible(true);
 		
 		//now the game start
-		choiseVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
+		choiceVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
 	}
 
 	@Override
@@ -136,17 +214,21 @@ public class GUI extends JFrame implements ActionListener {
 			System.out.println("Equal by suit");
 			GameController.suitEqual();
 		}
+		else if(e.getSource() == buttonJoker && !(GameController.getGameStack().size() == 0)){
+			System.out.println("Joker used");
+			GameController.jokerPressed();
+		}
 
 		System.out.println("\n Current score : " + GameController.getScore());
     	GameController.printDeck();
-		choiseVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
+		choiceVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
 		if(GameController.gameCompare() == 0 && GameController.getGameStack().size() == 0 ){
 			//fin de parti
 			buttonPioche.setVisible(false);
 			buttonRank.setVisible(false);
 			buttonSuit.setVisible(false);
 			textScore.setBounds(300, 200, 400, 100);
-			textScore.setText(" Game Over       Your score is" + GameController.getScore() + "points");
+			textScore.setText(" Game Over       Your score is : " + GameController.getScore() + "points");
 		}
 		else{
 		//desk updating
@@ -154,7 +236,8 @@ public class GUI extends JFrame implements ActionListener {
 		this.cardTwo.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
 		this.cardThree.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
 		this.cardFour.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
-		textScore.setText("" + GameController.getScore());
+		textScore.setText("Score : " + GameController.getScore());
+		jokerCounter.setText("Remaining Jokers : " + GameController.getJokerUsage());
 		}
 	}
 	
@@ -198,7 +281,7 @@ public class GUI extends JFrame implements ActionListener {
 		return name;
 	}
 
-	public static void choiseVisibleButton(JButton buttonRank, JButton buttonSuit, JLabel deckTemp, JLabel draw){
+	public static void choiceVisibleButton(JButton buttonRank, JButton buttonSuit, JLabel deckTemp, JLabel draw){
 		//show or hide the transparent button on the cards
 		if(GameController.gameCompare() == 1){
 			buttonSuit.setVisible(false);
@@ -219,6 +302,10 @@ public class GUI extends JFrame implements ActionListener {
 		else{
 			deckTemp.setVisible(true);
 		}
+//added joker usage checker
+		if (GameController.getJokerUsage()<=0){
+			buttonJoker.setVisible(false);
+		}
 
 		if(GameController.getGameStack().size() == 0){
 			draw.setVisible(false);
@@ -227,4 +314,5 @@ public class GUI extends JFrame implements ActionListener {
 			draw.setVisible(true);
 		}
 	}
+	
 }
