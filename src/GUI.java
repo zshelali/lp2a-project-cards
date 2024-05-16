@@ -163,7 +163,7 @@ public class GUI extends JFrame implements ActionListener {
 		this.setVisible(true);
 		
 		//now the game start
-		choiseVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
+		choiceVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
 	}
 
 	@Override
@@ -191,7 +191,7 @@ public class GUI extends JFrame implements ActionListener {
 
 		System.out.println("\n Current score : " + GameController.getScore());
     	GameController.printDeck();
-		choiseVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
+		choiceVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
 		if(GameController.gameCompare() == 0 && GameController.getGameStack().size() == 0 ){
 			//fin de parti
 			buttonPioche.setVisible(false);
@@ -251,7 +251,7 @@ public class GUI extends JFrame implements ActionListener {
 		return name;
 	}
 
-	public static void choiseVisibleButton(JButton buttonRank, JButton buttonSuit, JLabel deckTemp, JLabel draw){
+	public static void choiceVisibleButton(JButton buttonRank, JButton buttonSuit, JLabel deckTemp, JLabel draw){
 		//show or hide the transparent button on the cards
 		if(GameController.gameCompare() == 1){
 			buttonSuit.setVisible(false);
