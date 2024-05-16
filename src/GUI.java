@@ -23,7 +23,8 @@ public class GUI extends JFrame implements ActionListener {
 	protected JButton buttonSuit;
 	protected static JButton buttonJoker;
 
-	protected JTextField textScore;
+	protected JLabel textScore;
+	protected JLabel jokerCounter;
 
 	protected JLabel cardOne;
 	protected JLabel cardTwo;
@@ -31,6 +32,8 @@ public class GUI extends JFrame implements ActionListener {
 	protected JLabel cardFour;
 	protected JLabel deckTemp;
 	protected JLabel draw;
+
+	
 	
 	/**
 	 * Constructor
@@ -63,10 +66,15 @@ public class GUI extends JFrame implements ActionListener {
 		getContentPane().add(buttonJoker);
 		
 
-		textScore = new JTextField("0");
+		textScore = new JLabel("Score : " + GameController.getScore());
 		textScore.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textScore.setBounds(900, 22, 70, 40);
+		textScore.setBounds(900, 22, 100, 40);
 		getContentPane().add(textScore);
+
+		jokerCounter = new JLabel("Remaining Jokers : " + GameController.getJokerUsage());
+		jokerCounter.setFont(new Font("Tahoma", Font.BOLD, 16));
+		jokerCounter.setBounds(1000, 10, 200, 40);
+		getContentPane().add(jokerCounter);
 
 		buttonSuit = new JButton("");
 		buttonSuit.setContentAreaFilled(false);
@@ -168,7 +176,8 @@ public class GUI extends JFrame implements ActionListener {
 		this.cardTwo.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
 		this.cardThree.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
 		this.cardFour.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
-		textScore.setText("" + GameController.getScore());
+		textScore.setText("Score : " + GameController.getScore());
+		jokerCounter.setText("Remaining Jokers : " + GameController.getJokerUsage());
 		}
 	}
 	
