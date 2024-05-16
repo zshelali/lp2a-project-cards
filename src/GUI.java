@@ -2,9 +2,9 @@
 
 //import java.awt.Color;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 //import javax.print.attribute.standard.JobKOctetsSupported;
 import javax.swing.ImageIcon;
@@ -56,13 +56,43 @@ public class GUI extends JFrame implements ActionListener {
 		buttonPioche.setBorderPainted(false);
 		buttonPioche.setFont(new Font("Tahoma", Font.BOLD, 50));
 		buttonPioche.setBounds(50, 10, 328, 200);
+		buttonPioche.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonPioche.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonPioche.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });
 		getContentPane().add(buttonPioche);
 
 		buttonJoker = new JButton("🃏");
 		buttonJoker.setContentAreaFilled(false);
 		buttonJoker.setBorderPainted(false);
 		buttonJoker.setFont(new Font("Tahoma", Font.BOLD, 50));
-		buttonJoker.setBounds(1000, 50, 100,100);
+		buttonJoker.setBounds(1000, 50, 85,50);
+		buttonJoker.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonJoker.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonJoker.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });	
 		getContentPane().add(buttonJoker);
 		
 
