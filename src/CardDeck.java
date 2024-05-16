@@ -44,6 +44,7 @@ public class CardDeck {
         else {
             System.out.println("Unable to add card : Max size exceeded");
         
+        }
     }
 
     public Card removeCard(int index) {
@@ -66,10 +67,20 @@ public class CardDeck {
         }
     }
 
-    public void shiftCards() {
-        for (int i = 0; i < this.deckSize(); i++) {
 
+   @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (deck.isEmpty()) {
+            sb.append("Empty deck");
+        } else {
+            for (int i = 0; i < deck.size(); i++) {
+                sb.append(i).append(" Card [")
+                        .append(deck.get(i).getCardSuit()).append(",")
+                        .append(deck.get(i).getCardRank()).append("]\n");
+            }
         }
+        return sb.toString();
     }
 
     public void printDeck() {
@@ -79,10 +90,14 @@ public class CardDeck {
         else {
             for (int i=0; i<=deck.size()-1; i++) {
                 System.out.println(i+" Card [" + deck.get(i).getCardSuit() + "," + deck.get(i).getCardRank() + "]");
-    
+
             }
         }
-        
+    
     }
-
 }
+
+
+
+
+
