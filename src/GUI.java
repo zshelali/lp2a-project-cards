@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.print.attribute.standard.JobKOctetsSupported;
+//import javax.print.attribute.standard.JobKOctetsSupported;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -145,6 +145,8 @@ public class GUI extends JFrame implements ActionListener {
 			buttonPioche.setVisible(false);
 			buttonRank.setVisible(false);
 			buttonSuit.setVisible(false);
+			textScore.setBounds(300, 200, 400, 100);
+			textScore.setText(" Game Over       Your score is" + GameController.getScore() + "points");
 		}
 		else{
 		//desk updating
