@@ -6,10 +6,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.print.attribute.standard.JobKOctetsSupported;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class GUI extends JFrame implements ActionListener {
 
@@ -20,7 +22,7 @@ public class GUI extends JFrame implements ActionListener {
 	protected JButton buttonRank;
 	protected JButton buttonSuit;
 
-	protected JButton buttonScore;
+	protected JTextField textScore;
 
 	protected JLabel cardOne;
 	protected JLabel cardTwo;
@@ -52,10 +54,11 @@ public class GUI extends JFrame implements ActionListener {
 		buttonPioche.setBounds(50, 10, 328, 200);
 		getContentPane().add(buttonPioche);
 
-		buttonScore = new JButton("0");
-		buttonScore.setFont(new Font("Tahoma", Font.BOLD, 16));
-		buttonScore.setBounds(900, 22, 50, 30);
-		getContentPane().add(buttonScore);
+		textScore = new JTextField("0");
+		
+		textScore.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textScore.setBounds(900, 22, 70, 40);
+		getContentPane().add(textScore);
 
 		buttonSuit = new JButton("");
 		buttonSuit.setContentAreaFilled(false);
@@ -134,45 +137,23 @@ public class GUI extends JFrame implements ActionListener {
 			GameController.suitEqual();
 		}
 
-		System.out.println("\n Current score : " +GameController.getScore());
+		System.out.println("\n Current score : " + GameController.getScore());
     	GameController.printDeck();
 		choiseVisibleButton(buttonRank, buttonSuit, deckTemp, draw);
-
+		if(GameController.gameCompare() == 0 && GameController.getGameStack().size() == 0 ){
+			//fin de parti
+			buttonPioche.setVisible(false);
+			buttonRank.setVisible(false);
+			buttonSuit.setVisible(false);
+		}
+		else{
 		//desk updating
 		this.cardOne.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(0)+".png")));
 		this.cardTwo.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(1)+".png")));
 		this.cardThree.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(2)+".png")));
 		this.cardFour.setIcon(new ImageIcon(GUI.class.getResource("/Cards/"+ nameCardFetch(3)+".png")));
-		buttonScore.setText("" + GameController.getScore());
-		/*
-
-		if(e.getSource() == button1 || e.getSource() == button2) { // case 1
-			//imagePath = "/resources/KS.png";
-			gameDeck.clearDeck(); 
-            //refill the gameDeck
-            if (!secondaryDeck.isEmpty()) {
-                while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()){
-                	gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
-             	}
-            }
-            else {
-                while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
-                    gameDeck.addCard(gameStack.pop());
-                    System.out.println("CASE 1 :🚨🚨🚨🚨🚨🚨🚨");
-			    }
-            }
+		textScore.setText("" + GameController.getScore());
 		}
-
-		if(e.getSource() == buttonPioche){ //case 0 
-			secondaryDeck.addCard(gameDeck.removeCard(0));
-            gameDeck.addCard(gameStack.pop());
-            break;
-		}
-		System.out.println("\n Current score : " +GameController.getScore());
-        GameController.printDeck();
-		button1.setVisible(false);
-		button2.setVisible(false);
-	*/
 	}
 	
 	public String nameCardFetch(int index){
