@@ -126,7 +126,7 @@ public class GameController {
         gameDeck.removeCard(1);
         if (!secondaryDeck.isEmpty()) {
             while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
-                gameDeck.addCard(secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+                gameDeck.addCard(0,secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
             }
         }
         if (secondaryDeck.isEmpty()) {
