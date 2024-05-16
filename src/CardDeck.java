@@ -37,6 +37,15 @@ public class CardDeck {
         }
     }
 
+    public void addCard(int index, Card c){
+         if (deck.size() < maxSize) {
+            deck.add(index,c);
+        }
+        else {
+            System.out.println("Unable to add card : Max size exceeded");
+        
+    }
+
     public Card removeCard(int index) {
         if (deck.size() == 0) {
             System.out.println("Unable to remove card from deck : deck is already empty");
