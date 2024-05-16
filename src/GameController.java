@@ -100,7 +100,8 @@ public class GameController {
 
     public static void drawCard(){
         secondaryDeck.addCard(gameDeck.removeCard(0));
-        gameDeck.addCard(gameStack.pop());
+        if (!gameStack.isEmpty())
+            gameDeck.addCard(gameStack.pop());
     }
 
     public static void rankEqual(){
