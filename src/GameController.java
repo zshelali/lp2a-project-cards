@@ -21,7 +21,7 @@ public class GameController {
     private static CardDeck secondaryDeck = new CardDeck(52);
     public static CardDeck getSecondaryDeck() {return secondaryDeck;}
 
-    private static int jokerUsage = 2;
+    private static int jokerUsage = 3;
     public static int getJokerUsage() {return jokerUsage;}
 
 
