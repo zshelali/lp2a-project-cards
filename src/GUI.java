@@ -111,6 +111,21 @@ public class GUI extends JFrame implements ActionListener {
 		buttonSuit.setBorderPainted(false);
 		buttonSuit.setIcon(new ImageIcon(GUI.class.getResource("/Cards/SuitButton.png")));
 		buttonSuit.setBounds(310, 213, 830, 305);
+		buttonSuit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonSuit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonSuit.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });	
 		getContentPane().add(buttonSuit);
 
 		buttonRank = new JButton("");
@@ -118,6 +133,21 @@ public class GUI extends JFrame implements ActionListener {
 		buttonRank.setBorderPainted(false);
 		buttonRank.setIcon(new ImageIcon(GUI.class.getResource("/Cards/RankButton.png")));
 		buttonRank.setBounds(310, 213, 830, 305);
+		buttonRank.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			  // Change background color on hover (example: highlight yellow)
+			  buttonRank.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+  
+			}
+		  
+			@Override
+			public void mouseExited(MouseEvent e) {
+			  // Reset background color on mouse exit
+			  buttonRank.setCursor(Cursor.getDefaultCursor());
+  
+			}
+		  });	
 		getContentPane().add(buttonRank);
 
 		
