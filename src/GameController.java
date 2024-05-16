@@ -144,20 +144,27 @@ public class GameController {
     }
 
     public static void jokerPressed() {
-        gameDeck.removeCard(1);
-        gameDeck.removeCard(1);
-        if (!secondaryDeck.isEmpty()) {
-            while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
-                gameDeck.addCard(0,secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+        if (jokerUsage > 0) {
+            gameDeck.removeCard(1);
+            gameDeck.removeCard(1);
+            if (!secondaryDeck.isEmpty()) {
+                while(gameDeck.deckSize() < 4 && !secondaryDeck.isEmpty()) {
+                    gameDeck.addCard(0,secondaryDeck.removeCard(secondaryDeck.deckSize()-1));
+                }
             }
-        }
-        if (secondaryDeck.isEmpty()) {
-            while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
-                gameDeck.addCard(gameStack.pop());
-                    System.out.println("CASE 2 :🥶🥶🥶🥶🥶🥶🥶");
+            if (secondaryDeck.isEmpty()) {
+                while(gameDeck.deckSize() < 4 && !gameStack.isEmpty()) {
+                    gameDeck.addCard(gameStack.pop());
+                        System.out.println("JOKER : 🃏🃏🃏🃏🃏🃏🃏🃏");
+                        System.out.println("Joker Usage : "+getJokerUsage());
+                }
             }
+            jokerUsage-=1;
         }
-     
+        else {
+        System.out.println("No more jokers buddy");
+        } 
+
     }
 
     //🥶

@@ -21,6 +21,7 @@ public class GUI extends JFrame implements ActionListener {
 	protected JButton buttonPioche;
 	protected JButton buttonRank;
 	protected JButton buttonSuit;
+	protected static JButton buttonJoker;
 
 	protected JTextField textScore;
 
@@ -54,8 +55,15 @@ public class GUI extends JFrame implements ActionListener {
 		buttonPioche.setBounds(50, 10, 328, 200);
 		getContentPane().add(buttonPioche);
 
-		textScore = new JTextField("0");
+		buttonJoker = new JButton("🃏");
+		buttonJoker.setContentAreaFilled(false);
+		buttonJoker.setBorderPainted(false);
+		buttonJoker.setFont(new Font("Tahoma", Font.BOLD, 50));
+		buttonJoker.setBounds(1000, 50, 100,100);
+		getContentPane().add(buttonJoker);
 		
+
+		textScore = new JTextField("0");
 		textScore.setFont(new Font("Tahoma", Font.BOLD, 16));
 		textScore.setBounds(900, 22, 70, 40);
 		getContentPane().add(textScore);
@@ -111,6 +119,8 @@ public class GUI extends JFrame implements ActionListener {
 		buttonPioche.addActionListener(this);
 		buttonSuit.addActionListener(this);
 		buttonRank.addActionListener(this);
+		buttonJoker.addActionListener(this);
+		
 
 		this.setVisible(true);
 		
@@ -136,6 +146,10 @@ public class GUI extends JFrame implements ActionListener {
 			System.out.println("Equal by suit");
 			GameController.suitEqual();
 		}
+		else if(e.getSource() == buttonJoker){
+			System.out.println("Joker used");
+			GameController.jokerPressed();
+		}
 
 		System.out.println("\n Current score : " + GameController.getScore());
     	GameController.printDeck();
@@ -146,7 +160,7 @@ public class GUI extends JFrame implements ActionListener {
 			buttonRank.setVisible(false);
 			buttonSuit.setVisible(false);
 			textScore.setBounds(300, 200, 400, 100);
-			textScore.setText(" Game Over       Your score is" + GameController.getScore() + "points");
+			textScore.setText(" Game Over       Your score is : " + GameController.getScore() + "points");
 		}
 		else{
 		//desk updating
@@ -219,6 +233,10 @@ public class GUI extends JFrame implements ActionListener {
 		else{
 			deckTemp.setVisible(true);
 		}
+//added joker usage checker
+		if (GameController.getJokerUsage()<=0){
+			buttonJoker.setVisible(false);
+		}
 
 		if(GameController.getGameStack().size() == 0){
 			draw.setVisible(false);
@@ -227,4 +245,5 @@ public class GUI extends JFrame implements ActionListener {
 			draw.setVisible(true);
 		}
 	}
+	
 }
