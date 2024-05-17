@@ -101,7 +101,7 @@ public class GUI extends JFrame implements ActionListener {
 
 		textScore = new JLabel("Score : " + GameController.getScore());
 		textScore.setFont(new Font("Tahoma", Font.BOLD, 25));
-		textScore.setBounds(500, 22, 100, 40);
+		textScore.setBounds(500, 22, 150, 40);
 		getContentPane().add(textScore);
 
 		jokerCounter = new JLabel("Remaining Jokers : " + GameController.getJokerUsage());
