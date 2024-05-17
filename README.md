@@ -1,4 +1,4 @@
-Ali Hajerii
+Ali Hajeri
 Pierre Guerout
 Louis Thomas
 
