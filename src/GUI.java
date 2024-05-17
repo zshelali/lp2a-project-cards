@@ -4,7 +4,10 @@
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //import javax.print.attribute.standard.JobKOctetsSupported;
 import javax.swing.ImageIcon;
@@ -97,8 +100,8 @@ public class GUI extends JFrame implements ActionListener {
 		
 
 		textScore = new JLabel("Score : " + GameController.getScore());
-		textScore.setFont(new Font("Tahoma", Font.BOLD, 16));
-		textScore.setBounds(900, 22, 100, 40);
+		textScore.setFont(new Font("Tahoma", Font.BOLD, 25));
+		textScore.setBounds(500, 22, 100, 40);
 		getContentPane().add(textScore);
 
 		jokerCounter = new JLabel("Remaining Jokers : " + GameController.getJokerUsage());
@@ -227,7 +230,13 @@ public class GUI extends JFrame implements ActionListener {
 			buttonPioche.setVisible(false);
 			buttonRank.setVisible(false);
 			buttonSuit.setVisible(false);
-			textScore.setBounds(300, 200, 400, 100);
+			cardOne.setVisible(false);
+			cardTwo.setVisible(false);
+			cardThree.setVisible(false);
+			cardFour.setVisible(false);
+			deckTemp.setVisible(false);
+			textScore.setBounds(100, 200, 1000, 300);
+			textScore.setFont(new Font("Tahoma", Font.BOLD, 50));
 			textScore.setText(" Game Over       Your score is : " + GameController.getScore() + "points");
 		}
 		else{
