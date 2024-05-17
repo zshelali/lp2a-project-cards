@@ -77,31 +77,6 @@ public class GameController {
         //try again
     }
 
-    public static void gameResume() {
-        if (!gameStack.isEmpty()) {
-            switch (gameCompare()) {
-                
-                case 0: //nothing equal, draw a card
-                    drawCard();
-                    break;
-
-                case 1: //equal by Rank, score +=5, remove all cards
-                    rankEqual();
-                    break;
-
-                case 2:  //equal by Suit, score +=2
-                    suitEqual();
-                    break;
-
-                default :
-                    System.out.println("gameResume : case error, value isn't 0, 1 or 2");
-
-                }
-
-        } 
-
-    }
-
     public static void drawCard(){
         secondaryDeck.addCard(gameDeck.removeCard(0));
         if (!gameStack.isEmpty())
