@@ -1,16 +1,6 @@
-les fichiers à modifier ou à upload sont dans le dossier "src". Ne pas toucher à bin (qui store les fichiers compilés). 
-Modifiable directement en tant que projet Java sur VSC en téléchargeant l'ensemble du dossier, si vous utilisez un autre IDE essayez de seulement télécharger les fichiers de "src".
+Ali Hajerii
+Pierre Guerout
+Louis Thomas
 
-# A faire :
-
-* Nettoyer le code inutile
-* Finir TestWindow
-* Rapport
-* Video
-
-
-
-
-
-
-
+Run the .jar file to play.
+Exit with the red cross (or ⌘Q) and relaunch the program to start a new game.
